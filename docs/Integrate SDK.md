@@ -68,7 +68,7 @@ Add next values to your info.plist related to app. If you’re new at Xcode’s 
 - Also add AdMob key:
 
 ```xml
-<key>GADApplicationIdentifier</key
+<key>GADApplicationIdentifier</key>
 <string>GAD Key</string>
 ```
 
