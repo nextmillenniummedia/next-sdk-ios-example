@@ -14,13 +14,13 @@ Before start to using dynamic ad injection you need to register screens of your 
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-			...        
-			InApp.shared.registerScreens(screens: [
-            InAppScreen(key: "ExampleViewController", title: "Example"),
-            InAppScreen(key: "Example2ViewController", title: "Example2")
-			])
+	...        
+	InApp.shared.registerScreens(screens: [
+        InAppScreen(key: "ExampleViewController", title: "Example"),
+        InAppScreen(key: "Example2ViewController", title: "Example2")
+	])
 
-			return true
+	return true
 }
 ```
 
@@ -35,14 +35,15 @@ Also you can provide us screenshot of your screens and edit ad placements by the
 
 ```swift
 override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		...
+	super.viewDidAppear(animated)
+	...
     let timer = Timer.scheduledTimer(
-			withTimeInterval: 5.0,
-		  repeats: false) { timer in
-			InApp.shared.uploadScreenshot(vc: self,
-																	  screenName: "ExampleViewController",
-																	  key: "Example")
+        withTimeInterval: 5.0,
+        repeats: false) { timer in
+		InApp.shared.uploadScreenshot(
+            vc: self,
+            screenName: "ExampleViewController",
+            key: "Example")
      }
 }
 ```
@@ -74,9 +75,9 @@ To showing banner ad you need to call the SDK injection at *viewDidLoad()*:
 
 ```swift
 public override func viewDidLoad() {
-				super.viewDidLoad()
-        ...        
-				InApp.shared.inject(vc: self, screenName: "Example")
+	super.viewDidLoad()
+    ...        
+	InApp.shared.inject(vc: self, screenName: "Example")
 }
 ```
 
@@ -101,7 +102,7 @@ override func loadView() {
 
     let listConstraints = [
         listView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),     
-				listView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+		listView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         listView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
         listView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
     ]
@@ -117,8 +118,8 @@ listContentViews.append(contentsOf: makeListContentViews())
 listView.views = listViews
 
 private func makeListContentViews() -> [ContentView] {
-        ...
-        return rowViews
+    ...
+    return rowViews
 }
 ```
 
@@ -132,9 +133,9 @@ listView.spacing = 10
 
 ```swift
 public override func viewDidLoad() {
-        super.viewDidLoad()
-        ...
-        InApp.shared.inject(vc: self, screenName: "Example")
+    super.viewDidLoad()
+    ...
+    InApp.shared.inject(vc: self, screenName: "Example")
 }
 ```
 

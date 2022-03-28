@@ -21,7 +21,7 @@ InApp.shared.start()
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         ...        
-				InApp.shared.start()
+	InApp.shared.start()
 }
 ```
 

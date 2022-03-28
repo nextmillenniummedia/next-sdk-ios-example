@@ -15,11 +15,11 @@ Use `InAppBannerAdView`  class to showing banner ad manually:
 ```swift
 // example of banner class initialization
 lazy var bannerAdView: InAppBannerAdView = {
-   let bannerAdView = InAppBannerAdView(frame: .zero,
+    let bannerAdView = InAppBannerAdView(frame: .zero,
                                         adUnit: *yourAdUnit*,
                                         rootViewController: rootViewConntroller)
-	 bannerAdView.translatesAutoresizingMaskIntoConstraints = false
-   return bannerAdView
+	bannerAdView.translatesAutoresizingMaskIntoConstraints = false
+    return bannerAdView
 }()
 
 override func loadView() {
@@ -27,10 +27,10 @@ override func loadView() {
     ...
     view.addSubview(bannerAdView)
 
-		// example of constraints for banner ad
+	// example of constraints for banner ad
     let bannerAdConstraints = [
         bannerAdView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),     
-				bannerAdView.heightAnchor.constraint(equalToConstant: 50),
+		bannerAdView.heightAnchor.constraint(equalToConstant: 50),
         bannerAdView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
         bannerAdView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
     ]
@@ -49,28 +49,28 @@ bannerAdView.loadAd()
 
 ```swift
 class MainViewController: UIViewController {
-	lazy var bannerAdView: InAppBannerAdView = {
-   let bannerAdView = InAppBannerAdView(frame: .zero,
+    lazy var bannerAdView: InAppBannerAdView = {
+        let bannerAdView = InAppBannerAdView(frame: .zero,
                                         adUnit: *yourAdUnit*,
                                         rootViewController: rootViewConntroller)
-   // set delegate
-   bannerAdView.delegate = self
+    // set delegate
+    bannerAdView.delegate = self
 
-	 bannerAdView.translatesAutoresizingMaskIntoConstraints = false
-   return bannerAdView
-}()
+	bannerAdView.translatesAutoresizingMaskIntoConstraints = false
+    return bannerAdView
+    }()
 
-	...
+    ...
 }
 
 extension MainViewController: InAppBannerAdViewDelegate {
-  // tells when ad is loaded
+    // tells when ad is loaded
 	func bannerAdViewDidLoadAd(bannerAdView: InAppBannerAdView) {
 	...
   }
 
-  // tells when ad is not loaded with error
-  func bannerAdView(_ bannerAdView: InAppBannerAdView, didFailedLoadAdWithError error: Error) {
+    // tells when ad is not loaded with error
+    func bannerAdView(_ bannerAdView: InAppBannerAdView, didFailedLoadAdWithError error: Error) {
 	...
   }
 }
