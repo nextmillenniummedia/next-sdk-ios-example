@@ -2,13 +2,12 @@
 
 Manual mode is a way of serving ads in your apps where publisher manually adjusts ad placing and does all of the ad management on his own. This way of integration allows more customization compared to Dynamic method, however Manual mode is recommended for advanced users.
 
-Currently we support Banner ads that could be integrated in your app manually.
+Currently we support Banner and Interstital ads that could be integrated in your app manually.
+First, you need to get configurated InApp ad unit from your manager. Use it’s ID to next ads.
 
 ## Banner
 
-First, you need new ad unit from InApp dashboard. Use it’s ID to initialize banner ads.
-
-Use `InAppBannerAdView`  class to showing banner ad manually:
+Use `InAppBannerAdView` class to showing banner ad manually:
 
 1. Init and add view as subview.
 
@@ -39,13 +38,13 @@ override func loadView() {
 }
 ```
 
-1. When main view is loaded and you ready to show ad call loading method:
+2. When main view is loaded and you ready to show ad call loading method:
 
 ```swift
 bannerAdView.loadAd()
 ```
 
-1. You can also add delegate listener and catch events within banner ad view:
+3. You can also add delegate listener and catch events within banner ad view:
 
 ```swift
 class MainViewController: UIViewController {
@@ -74,4 +73,21 @@ extension MainViewController: InAppBannerAdViewDelegate {
 	...
   }
 }
+```
+
+## Interstitial
+
+Use `InAppInterstitialAdView` class to showing banner ad manually:
+
+1. Init class with InApp ad unit and UIViewController which will show ads:
+
+```swift
+let interstitialAdView = InAppInterstitialAdView(adUnit: *ad unit*,
+                                                 rootViewController: *your UIViewController instance*)
+```
+
+2.When your UIViewController is loaded and you ready to show ad call func to load and show ad:
+
+```swift
+interstitialAdView.loadAndShowAd()
 ```
