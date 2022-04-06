@@ -5,7 +5,7 @@ Manual mode is a way of serving ads in your apps where publisher manually adjust
 Currently we support Banner and Interstital ads that could be integrated in your app manually.
 First, you need to get configurated InApp ad unit from your manager. Use it’s ID to next ads.
 
-## Banner
+## Banner Ad
 
 Use `InAppBannerAdView` class to showing banner ad manually:
 
@@ -75,19 +75,59 @@ extension MainViewController: InAppBannerAdViewDelegate {
 }
 ```
 
-## Interstitial
+## Interstitial Ad
 
 Use `InAppInterstitialAdView` class to showing banner ad manually:
 
 1. Init class with InApp ad unit and UIViewController which will show ads:
 
 ```swift
-let interstitialAdView = InAppInterstitialAdView(adUnit: *ad unit*,
-                                                 rootViewController: *your UIViewController instance*)
+let interstitialAdView = InAppInterstitialAdView(
+    adUnit: *ad unit*,
+    rootViewController: *your UIViewController instance*
+    )
 ```
 
 2.When your UIViewController is loaded and you ready to show ad call func to load and show ad:
 
 ```swift
 interstitialAdView.loadAndShowAd()
+```
+
+# Rewarded Ad
+
+Use `InAppRewardedAdView` class to showing banner ad manually:
+
+1. Init class with InApp ad unit and UIViewController which will show ads:
+
+```swift
+let rewardedAdView = InAppRewardedAdView(
+    adUnit: *ad unit*,
+    rootViewController: *your UIViewController instance*
+    )
+```
+
+2.When your UIViewController is loaded and you ready to show ad call func to load and show ad:
+
+```swift
+rewardedAdView.loadAndShowAd()
+```
+
+# Rewarded Interstitial Ad
+
+Use `InAppRewardedInterstitialAdView` class to showing banner ad manually:
+
+1. Init class with InApp ad unit and UIViewController which will show ads:
+
+```swift
+let rewardedInterstitialAdView = InAppRewardedInterstitialAdView(
+    adUnit: *ad unit*,
+    rootViewController: *your UIViewController instance*
+    )
+```
+
+2.When your UIViewController is loaded and you ready to show ad call func to load and show ad:
+
+```swift
+rewardedInterstitialAdView.loadAndShowAd()
 ```
