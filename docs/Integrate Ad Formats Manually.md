@@ -50,7 +50,7 @@ bannerAdView.loadAd()
 class MainViewController: UIViewController {
     lazy var bannerAdView: InAppBannerAdView = {
         let bannerAdView = InAppBannerAdView(frame: .zero,
-                                        adUnit: *yourAdUnit*,
+                                        adUnit: *yourAdUnitID*,
                                         rootViewController: rootViewConntroller)
     // set delegate
     bannerAdView.delegate = self
@@ -83,7 +83,7 @@ Use `InAppInterstitialAdView` class to showing banner ad manually:
 
 ```swift
 let interstitialAdView = InAppInterstitialAdView(
-    adUnit: *ad unit*,
+    adUnit: *ad unit ID*,
     rootViewController: *your UIViewController instance*
     )
 ```
@@ -102,7 +102,7 @@ Use `InAppRewardedAdView` class to showing banner ad manually:
 
 ```swift
 let rewardedAdView = InAppRewardedAdView(
-    adUnit: *ad unit*,
+    adUnit: *ad unit ID*,
     rootViewController: *your UIViewController instance*
     )
 ```
@@ -121,7 +121,7 @@ Use `InAppRewardedInterstitialAdView` class to showing banner ad manually:
 
 ```swift
 let rewardedInterstitialAdView = InAppRewardedInterstitialAdView(
-    adUnit: *ad unit*,
+    adUnit: *ad unit ID*,
     rootViewController: *your UIViewController instance*
     )
 ```
