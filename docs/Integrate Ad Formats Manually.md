@@ -15,7 +15,7 @@ Use `InAppBannerAdView` class to showing banner ad manually:
 // example of banner class initialization
 lazy var bannerAdView: InAppBannerAdView = {
     let bannerAdView = InAppBannerAdView(frame: .zero,
-                                        adUnit: *yourAdUnit*,
+                                        adUnit: *yourAdUnitID*,
                                         rootViewController: rootViewConntroller)
 	bannerAdView.translatesAutoresizingMaskIntoConstraints = false
     return bannerAdView
