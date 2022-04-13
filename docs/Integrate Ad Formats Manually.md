@@ -93,7 +93,7 @@ let interstitialAdView = InAppInterstitialAdView(
 interstitialAdView.loadAndShowAd()
 ```
 
-# Rewarded Ad
+## Rewarded Ad
 
 Use `InAppRewardedAdView` class to showing banner ad manually:
 
@@ -112,7 +112,7 @@ let rewardedAdView = InAppRewardedAdView(
 rewardedAdView.loadAndShowAd()
 ```
 
-# Rewarded Interstitial Ad
+## Rewarded Interstitial Ad
 
 Use `InAppRewardedInterstitialAdView` class to showing banner ad manually:
 
