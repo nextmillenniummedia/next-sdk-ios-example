@@ -2,7 +2,6 @@
 
 Manual mode is a way of serving ads in your apps where publisher manually adjusts ad placing and does all of the ad management on his own. This way of integration allows more customization compared to Dynamic method, however Manual mode is recommended for advanced users.
 
-Currently we support Banner and Interstital ads that could be integrated in your app manually.
 First, you need to get configurated InApp ad unit from your manager. Use it’s ID to next ads.
 
 ## Banner Ad
