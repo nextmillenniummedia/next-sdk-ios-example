@@ -18,6 +18,9 @@ final class InterstitialViewController: UIViewController {
         return $0
     }(UILabel())
     
+    // manual intergration
+    var interstitialAdView: InAppInterstitialAdView?
+    
     private lazy var activeConstraints: [NSLayoutConstraint] = []
     
     override func loadView() {
@@ -33,6 +36,11 @@ final class InterstitialViewController: UIViewController {
 
         // Calling ads auto injection in registered view
         InApp.shared.inject(vc: self, screenName: InAppConfiguration.Views.interstitial)
+        
+        // example of manual integration interstitial ads
+//        interstitialAdView = InAppInterstitialAdView(adUnit: "523", rootViewController: self)
+//        interstitialAdView?.delegate = self
+//        interstitialAdView?.loadAndShowAd()
     }
     
     private func setupUI() {
@@ -47,6 +55,41 @@ final class InterstitialViewController: UIViewController {
         ]
         
         NSLayoutConstraint.activate(activeConstraints)
+    }
+}
+
+// example of usage interstitial ads delegate
+extension InterstitialViewController: InAppInterstitialAdViewDelegate {
+    func interstitialAdViewDidLoadedAd(_ interstitialAdView: InAppInterstitialAdView) {
+        print("interstitialAdViewDidLoadedAd")
+    }
+    
+    func interstitialAdView(_ interstitialAdView: InAppInterstitialAdView, didFailLoadAdWithError error: Error) {
+        print("interstitialAdView")
+    }
+    
+    func interstitialAdWillPresent(_ interstitialAdView: InAppInterstitialAdView) {
+        print("interstitialAdWillPresent")
+    }
+    
+    func interstitialAdDidFailToPresent(_ interstitialAdView: InAppInterstitialAdView, error: Error) {
+        print("interstitialAdDidFailToPresent")
+    }
+    
+    func interstitialAdDidRecordImpression(_ interstitialAdView: InAppInterstitialAdView) {
+        print("interstitialAdDidRecordImpression")
+    }
+    
+    func interstitialAdDidRecordClick(_ interstitialAdView: InAppInterstitialAdView) {
+        print("interstitialAdDidRecordClick")
+    }
+    
+    func interstitialAdViewWillDismiss(_ interstitialAdView: InAppInterstitialAdView) {
+        print("interstitialAdViewWillDismiss")
+    }
+    
+    func interstitialAdViewDidDismiss(_ interstitialAdView: InAppInterstitialAdView) {
+        print("interstitialAdViewDidDismiss")
     }
 }
 

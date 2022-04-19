@@ -18,6 +18,14 @@ final class BannerViewController: UIViewController {
         return $0
     }(UILabel())
     
+    // manual integration of banner ads
+    lazy var bannerAdView: InAppBannerAdView = {
+        let bannerAdView = InAppBannerAdView(frame: .zero,
+                                             adUnit: "522", rootViewController: self)
+        bannerAdView.translatesAutoresizingMaskIntoConstraints = false
+        return bannerAdView
+    }()
+    
     private lazy var activeConstraints: [NSLayoutConstraint] = []
     
     override func loadView() {
@@ -33,6 +41,10 @@ final class BannerViewController: UIViewController {
 
         // Calling ads auto injection in registered view
         InApp.shared.inject(vc: self, screenName: InAppConfiguration.Views.banner)
+        
+        // example of manual integration banner ads
+//        bannerAdView.delegate = self
+//        bannerAdView.loadAd()
     }
     
     private func setupUI() {
@@ -46,7 +58,48 @@ final class BannerViewController: UIViewController {
             titleLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
         ]
         
+        // example of manual integration banner ads
+//        view.addSubview(bannerAdView)
+//
+//        activeConstraints.append(contentsOf: [
+//            bannerAdView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+//            bannerAdView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            bannerAdView.widthAnchor.constraint(equalToConstant: 320),
+//            bannerAdView.heightAnchor.constraint(equalToConstant: 50),
+//        ])
+        
         NSLayoutConstraint.activate(activeConstraints)
+    }
+}
+
+// example of usage banner ads delegate
+extension BannerViewController: InAppBannerAdViewDelegate {
+    func bannerAdViewDidLoadAd(_ bannerAdView: InAppBannerAdView) {
+        print("bannerAdViewDidLoadAd")
+    }
+    
+    func bannerAdView(_ bannerAdView: InAppBannerAdView, didFailLoadAdWithError error: Error) {
+        print("bannerAdView")
+    }
+    
+    func bannerAdViewDidRecordImpression(_ bannerAdView: InAppBannerAdView) {
+        print("bannerAdViewDidRecordImpression")
+    }
+    
+    func bannerAdViewDidRecordClick(_ bannerAdView: InAppBannerAdView) {
+        print("bannerAdViewDidRecordClick")
+    }
+    
+    func bannerAdViewWillPresentAd(_ bannerAdView: InAppBannerAdView) {
+        print("bannerAdViewWillPresentAd")
+    }
+    
+    func bannerAdViewWillDismissAd(_ bannerAdView: InAppBannerAdView) {
+        print("bannerAdViewWillDismissAd")
+    }
+    
+    func bannerAdViewDidDismissAd(_ bannerAdView: InAppBannerAdView) {
+        print("bannerAdViewDidDismissAd")
     }
 }
 
