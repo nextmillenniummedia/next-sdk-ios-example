@@ -16,7 +16,7 @@ lazy var bannerAdView: InAppBannerAdView = {
     let bannerAdView = InAppBannerAdView(frame: .zero,
                                         adUnit: *yourAdUnitID*,
                                         rootViewController: rootViewConntroller)
-	bannerAdView.translatesAutoresizingMaskIntoConstraints = false
+    bannerAdView.translatesAutoresizingMaskIntoConstraints = false
     return bannerAdView
 }()
 
@@ -25,10 +25,10 @@ override func loadView() {
     ...
     view.addSubview(bannerAdView)
 
-	// example of constraints for banner ad
+    // example of constraints for banner ad
     let bannerAdConstraints = [
         bannerAdView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),     
-		bannerAdView.heightAnchor.constraint(equalToConstant: 50),
+        bannerAdView.heightAnchor.constraint(equalToConstant: 50),
         bannerAdView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
         bannerAdView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
     ]
@@ -43,7 +43,13 @@ override func loadView() {
 bannerAdView.loadAd()
 ```
 
-3. You can also add delegate listener and catch events within banner ad view:
+3. You can also add delegate listener and catch events from Banner Ad view:
+
+```swift
+bannerAdView.delegate = *your instance which impelements delegate's protocol*
+```
+
+Full example of usage:
 
 ```swift
 class MainViewController: UIViewController {
@@ -54,7 +60,7 @@ class MainViewController: UIViewController {
     // set delegate
     bannerAdView.delegate = self
 
-	bannerAdView.translatesAutoresizingMaskIntoConstraints = false
+    bannerAdView.translatesAutoresizingMaskIntoConstraints = false
     return bannerAdView
     }()
 
@@ -63,14 +69,39 @@ class MainViewController: UIViewController {
 
 extension MainViewController: InAppBannerAdViewDelegate {
     // tells when ad is loaded
-	func bannerAdViewDidLoadAd(bannerAdView: InAppBannerAdView) {
-	...
-  }
+    func bannerAdViewDidLoadAd(bannerAdView: InAppBannerAdView) {
+    ...
+    }
 
     // tells when ad is not loaded with error
     func bannerAdView(_ bannerAdView: InAppBannerAdView, didFailedLoadAdWithError error: Error) {
-	...
-  }
+    ...
+    }
+
+    // tells that ad did record impression
+    func bannerAdViewDidRecordImpression(_ bannerAdView: InAppBannerAdView) {
+    ...
+    }
+    
+    // tells that ad did record click
+    func bannerAdViewDidRecordClick(_ bannerAdView: InAppBannerAdView) {
+    ...
+    }
+    
+    // tells that ad will be presented
+    func bannerAdViewWillPresentAd(_ bannerAdView: InAppBannerAdView) {
+    ...
+    }
+    
+    // tells that ad will be dismissed
+    func bannerAdViewWillDismissAd(_ bannerAdView: InAppBannerAdView) {
+    ...
+    }
+    
+    // tells that ad did dismiss
+    func bannerAdViewDidDismissAd(_ bannerAdView: InAppBannerAdView) {
+    ...
+    }
 }
 ```
 
@@ -81,16 +112,96 @@ Use `InAppInterstitialAdView` class to showing banner ad manually:
 1. Init class with InApp ad unit and UIViewController which will show ads:
 
 ```swift
-let interstitialAdView = InAppInterstitialAdView(
-    adUnit: *ad unit ID*,
-    rootViewController: *your UIViewController instance*
-    )
+class MainViewController: UIViewController {
+    var interstitialAdView: InAppInterstitialAdView?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        interstitialAdView = InAppInterstitialAdView(
+            adUnit: *yourAdUnitID*,
+            rootViewController: *your UIViewController instance*
+            )
+    }
+}
 ```
 
 2.When your UIViewController is loaded and you ready to show ad call func to load and show ad:
 
 ```swift
 interstitialAdView.loadAndShowAd()
+```
+
+3. You can also add delegate listener and catch events from Interstitial Ad:
+
+```swift
+interstitialAdView.delegate = *your instance which impelements delegate's protocol*
+```
+
+Full example of usage:
+
+```swift
+class MainViewController: UIViewController {
+    var interstitialAdView: InAppInterstitialAdView?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        interstitialAdView = InAppInterstitialAdView(
+            adUnit: *yourAdUnitID*,
+            rootViewController: *your UIViewController instance*
+            )
+
+        // set delegate
+        interstitialAdView?.delegate = self
+
+        interstitialAdView?.loadAndShowAd()
+    }
+
+    ...
+}
+
+extension MainViewController: InAppInterstitialAdViewDelegate {
+    // tells that ad is loaded
+    func interstitialAdViewDidLoadedAd(_ interstitialAdView: InAppInterstitialAdView) {
+    ...
+    }
+    
+    // tells that ad is failed to load
+    func interstitialAdView(_ interstitialAdView: InAppInterstitialAdView, didFailLoadAdWithError error: Error) {
+    ...
+    }
+    
+    // tells that ad will be presented
+    func interstitialAdWillPresent(_ interstitialAdView: InAppInterstitialAdView) {
+    ...
+    }
+    
+    // tells that ad did fail to present in given UIViewController
+    func interstitialAdDidFailToPresent(_ interstitialAdView: InAppInterstitialAdView, error: Error) {
+    ...
+    }
+    
+    // tells that ad did record impression
+    func interstitialAdDidRecordImpression(_ interstitialAdView: InAppInterstitialAdView) {
+    ...
+    }
+    
+    // tells that ad did record click
+    func interstitialAdDidRecordClick(_ interstitialAdView: InAppInterstitialAdView) {
+    ...
+    }
+    
+    // tells that ad will be dismissed
+    func interstitialAdViewWillDismiss(_ interstitialAdView: InAppInterstitialAdView) {
+    ...
+    }
+    
+    // tells that ad did dismiss
+    func interstitialAdViewDidDismiss(_ interstitialAdView: InAppInterstitialAdView) {
+    ...
+    }
+}
 ```
 
 ## Rewarded Ad
@@ -101,7 +212,7 @@ Use `InAppRewardedAdView` class to showing banner ad manually:
 
 ```swift
 let rewardedAdView = InAppRewardedAdView(
-    adUnit: *ad unit ID*,
+    adUnit: *ad unit*,
     rootViewController: *your UIViewController instance*
     )
 ```
@@ -120,7 +231,7 @@ Use `InAppRewardedInterstitialAdView` class to showing banner ad manually:
 
 ```swift
 let rewardedInterstitialAdView = InAppRewardedInterstitialAdView(
-    adUnit: *ad unit ID*,
+    adUnit: *ad unit*,
     rootViewController: *your UIViewController instance*
     )
 ```

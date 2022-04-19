@@ -26,7 +26,7 @@ If you're new to CocoaPods, see their [official documentation](https://guides.c
 
 If by some reason you need to import **inApp SDK** by your own way:
 
-- Download [zip archive](https://sdk.brainlyads.com/ios/repository/1.2.6/InAppSDK.zip) with xcframework within.
+- Download [zip archive](https://sdk.brainlyads.com/ios/repository/1.2.7/InAppSDK.zip) with xcframework within.
 - Unzip it and add to your Xcode project by your preferred way. For example, you can just drag and drop it to project’s structure.
 - **inApp SDK** uses **Google Mobile Ads** as dependency and not work without it. You need to [download and integrate Google Mobile Ads](https://developers.google.com/admob/ios/download) as their official docs described.
 - Check *Frameworks, Libraries, and Embedded Content* in *General* tab of Xcode project. Change *InAppSDK.framework*’s **Embed** to **Do Not Embed** as at screen below:
