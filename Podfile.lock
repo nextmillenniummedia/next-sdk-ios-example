@@ -41,7 +41,7 @@ PODS:
   - "GoogleUtilities/NSData+zlib (7.7.0)"
   - GoogleUtilities/Reachability (7.7.0):
     - GoogleUtilities/Logger
-  - InAppSDK (1.2.7):
+  - InAppSDK (1.2.8):
     - FBAudienceNetwork (= 6.9.0)
     - Google-Mobile-Ads-SDK (= 9.2.0)
   - nanopb (2.30908.0):
@@ -71,7 +71,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 4c19f031220c72464d460c9daa1fb5d1acce958e
   GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
-  InAppSDK: 2cca2bb95ab5ed9cb971a0ce9d58079cfe75e2c3
+  InAppSDK: b8649e5d4e26d3410793cc048c147848b4cd1c98
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
 

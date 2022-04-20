@@ -65,7 +65,7 @@ extension InterstitialViewController: InAppInterstitialAdViewDelegate {
     }
     
     func interstitialAdView(_ interstitialAdView: InAppInterstitialAdView, didFailLoadAdWithError error: Error) {
-        print("interstitialAdView")
+        print("interstitialAdViewDidFailLoadAd")
     }
     
     func interstitialAdWillPresent(_ interstitialAdView: InAppInterstitialAdView) {
