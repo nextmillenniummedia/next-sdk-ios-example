@@ -53,14 +53,14 @@ Your main app’s target must have `-ObjC` linker flag. Add it in *Other Linker 
 
 Add next values to your info.plist related to app. If you’re new at Xcode’s *info.plist* read more at [Apple Developer docs](https://developer.apple.com/documentation/bundleresources/information_property_list).
 
-- First, you need to provide your InApp API key to project’s *info.plist*:
+- First, you need to provide your InApp API key to project’s *info.plist* (your unique inApp API Key would be provided to you by the Next Millennium manager):
 
 ```xml
 <key>InAppSDKAPIKey</key>
 <string>API Key</string>
 ```
 
-- Also add Google App ID:
+- Also add Google App ID (your unique Google App ID would be provided to you by the Next Millennium manager):
 
 ```xml
 <key>GADApplicationIdentifier</key>
