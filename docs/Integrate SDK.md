@@ -60,11 +60,11 @@ Add next values to your info.plist related to app. If you’re new at Xcode’s 
 <string>API Key</string>
 ```
 
-- Also add AdMob key:
+- Also add Google App ID:
 
 ```xml
 <key>GADApplicationIdentifier</key>
-<string>GAD Key</string>
+<string>Google App ID</string>
 ```
 
 - Add next `SKAdNetworkItems` key with `SKAdNetworkIdentifier` values:
