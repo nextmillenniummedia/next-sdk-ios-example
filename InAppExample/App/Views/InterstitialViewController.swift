@@ -37,7 +37,7 @@ final class InterstitialViewController: UIViewController {
         // Calling ads auto injection in registered view
         InApp.shared.inject(vc: self, screenName: InAppConfiguration.Views.interstitial)
         
-        // example of manual integration interstitial ads
+        // example of manual integration of Interstitial ads
 //        interstitialAdView = InAppInterstitialAdView(adUnit: "523", rootViewController: self)
 //        interstitialAdView?.delegate = self
 //        interstitialAdView?.loadAndShowAd()

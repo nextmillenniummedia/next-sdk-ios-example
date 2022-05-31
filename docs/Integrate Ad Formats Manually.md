@@ -132,7 +132,7 @@ class MainViewController: UIViewController {
 }
 ```
 
-2.When your UIViewController is loaded and you ready to show ad call func to load and show ad:
+2. When your UIViewController is loaded and you ready to show ad call func to load and show ad:
 
 ```swift
 interstitialAdView.loadAndShowAd()
@@ -217,10 +217,18 @@ Use `InAppRewardedAdView` class to showing banner ad manually:
 1. Init class with InApp ad unit and UIViewController which will show ads:
 
 ```swift
-let rewardedAdView = InAppRewardedAdView(
-    adUnit: *ad unit*,
-    rootViewController: *your UIViewController instance*
-    )
+class MainViewController: UIViewController {
+    var rewardedAdView: InAppRewardedAdView?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        rewardedAdView = InAppRewardedAdView(
+            adUnit: *yourAdUnitID*,
+            rootViewController: *your UIViewController instance*
+            )
+    }
+}
 ```
 
 2.When your UIViewController is loaded and you ready to show ad call func to load and show ad:
@@ -229,21 +237,71 @@ let rewardedAdView = InAppRewardedAdView(
 rewardedAdView.loadAndShowAd()
 ```
 
+Full example of usage:
+
+```swift
+class MainViewController: UIViewController {
+    var rewardedAdView: InAppRewardedAdView?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        rewardedAdView = InAppRewardedAdView(
+            adUnit: *yourAdUnitID*,
+            rootViewController: *your UIViewController instance*
+            )
+
+        rewardedAdView?.loadAndShowAd()
+    }
+
+    ...
+}
+```
+
 ## Rewarded Interstitial Ad
 
-Use `InAppRewardedInterstitialAdView` class to showing banner ad manually:
+Use `InAppRewardedInterstitialAdView` class to showing ad manually:
 
 1. Init class with InApp ad unit and UIViewController which will show ads:
 
 ```swift
-let rewardedInterstitialAdView = InAppRewardedInterstitialAdView(
-    adUnit: *ad unit*,
-    rootViewController: *your UIViewController instance*
-    )
+class MainViewController: UIViewController {
+    var rewardedInterstitialAdView: InAppRewardedInterstitialAdView?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        rewardedInterstitialAdView = InAppRewardedInterstitialAdView(
+            adUnit: *yourAdUnitID*,
+            rootViewController: *your UIViewController instance*
+            )
+    }
+}
 ```
 
 2.When your UIViewController is loaded and you ready to show ad call func to load and show ad:
 
 ```swift
 rewardedInterstitialAdView.loadAndShowAd()
+```
+
+Full example of usage:
+
+```swift
+class MainViewController: UIViewController {
+    var rewardedInterstitialAdView: InAppRewardedInterstitialAdView?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        rewardedInterstitialAdView = InAppRewardedInterstitialAdView(
+            adUnit: *yourAdUnitID*,
+            rootViewController: *your UIViewController instance*
+            )
+
+        rewardedInterstitialAdView?.loadAndShowAd()
+    }
+
+    ...
+}
 ```

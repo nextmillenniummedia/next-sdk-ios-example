@@ -17,35 +17,42 @@ final class RewardedViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UILabel())
-    
+
+    // manual intergration
+    var rewardedAdView: InAppRewardedAdView?
+
     private lazy var activeConstraints: [NSLayoutConstraint] = []
-    
+
     override func loadView() {
         super.loadView()
-        
+
         setupUI()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationItem.title = Constants.title
 
         // Calling ads auto injection in registered view
-        InApp.shared.inject(vc: self, screenName: InAppConfiguration.Views.rewarded)
+        // InApp.shared.inject(vc: self, screenName: InAppConfiguration.Views.rewarded)
+
+        // example of manual integration of Rewarded ads
+        // rewardedAdView = InAppRewardedAdView(adUnit: "524", rootViewController: self)
+        // rewardedAdView?.loadAndShowAd()
     }
-    
+
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        
+
         view.addSubview(titleLabel)
-        
+
         activeConstraints = [
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             titleLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
         ]
-        
+
         NSLayoutConstraint.activate(activeConstraints)
     }
 }
