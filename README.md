@@ -29,9 +29,11 @@ Check the docs below to learn about all the features we provide.
 
  **4.** [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/Integrate%20Ad%20Formats%20Manually.md)
 
- **5.** [Advanced Settings](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/Advanced%20Settings.md)
+ **5.** [Test Your Integration](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/Test%20Your%20Intergration.md)
 
- **6.** [FAQ](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/FAQ.md)
+ **6.** [Advanced Settings](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/Advanced%20Settings.md)
+
+ **7.** [FAQ](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/FAQ.md)
 
 # Example
 
