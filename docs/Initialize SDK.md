@@ -1,4 +1,4 @@
-# Initialize SDK
+# Initialize the SDK
 
 ## Usage
 
@@ -8,21 +8,32 @@
 import InAppSDK
 ```
 
-- Main class of SDK is `InApp`. Always use shared instance:
+- Main class of the SDK called `InApp`. Always use it's shared instance:
 
 ```swift
-InApp.shared.start()
+InApp.shared
 ```
 
 ## Initialization
 
-- You need to initialize InApp SDK at app launching phase. Use next code at AppDelegate:
+Follow the steps below to import and initialize the InApp iOS SDK:
+
+1. Ensure your project has a `UIApplicationDelegate` class defined.
+2. Add the following import to your `UIApplicationDelegate` class's file:
+
+```swift
+import InAppSDK
+```
+
+3. Invoke `InApp.shared.start()` in the `UIApplication`'s `didFinishLaunchingWithOptions` delegate method:
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        ...        
-	InApp.shared.start()
+        InApp.shared.start()
+        return true
 }
 ```
 
-- That’s all you need and now SDK is ready to show ads. Please, make sure that you call *start()* method only once.
+**Note**: Ensure that `start()` is only invoked once.
+
+The SDK is now ready to use. The next documents show how to integrate ads with the SDK.

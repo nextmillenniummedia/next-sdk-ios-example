@@ -1,12 +1,50 @@
-# Integrate SDK
+# Integrate the SDK
 
-# Import
+This document describe how to integrate the InApp iOS SDK into your iOS project.
 
-First, you need to download SDK and import it to your app’s project. **inApp SDK** supports **CocoaPods** and manual downloads to do it:
+## 1. Integrate with CocoaPods (preffered)
 
-## 1. CocoaPods (preffered)
+The simplest way to use InApp SDK is to integrate with [CocoaPods](https://guides.cocoapods.org/using/getting-started).
 
-The simplest way to use **inApp SDK** is integration by [CocoaPods](https://guides.cocoapods.org/using/getting-started).
+If you're new to CocoaPods, see their [official documentation](https://guides.cocoapods.org/using/using-cocoapods) for information on how to create and use Pod files.
+
+Follow the steps below to integrate with CocoaPods:
+
+1. Ensure you have a `podfile` in your project. If you don't have one:
+
+	a) Open Terminal or your command line tool.
+	
+	b) Navigate to the location of your project's `.xcodeproj` file (by `cd` command).
+
+	c) Enter the following command:
+
+	```
+	pod init
+	```
+
+	d) Verify that a file named `Podfile` was created in the current location.
+
+2. Add your `InAppSDK` pod in your `Podfile`:
+
+```
+target 'ExampleProject' do
+  use_frameworks!
+
+  # Pods for ExampleProject
+  pod 'InAppSDK'
+
+  ...
+end
+```
+
+3. Run the following command to install dependencies:
+
+```
+pod install --repo-update
+```
+
+This will create a `Pods` subdirectory containing the dependencies in the same location as `Podfile` and `.xcworkspace` file used for opening your app project with linked dependencies. 
+
 
 Add our pod in your Podfile:
 
@@ -20,54 +58,58 @@ Then, from the command line run:
 pod install --repo-update
 ```
 
-If you're new to CocoaPods, see their [official documentation](https://guides.cocoapods.org/using/using-cocoapods) for info on how to create and use Podfiles.
+## 2. Integrate Manually.
 
-## 2. Manual
+Alternatively, you can manually import the SDK with the following steps:
 
-If by some reason you need to import **inApp SDK** by your own way:
+1. Download [zip archive](https://sdk.brainlyads.com/ios/repository/1.2.8/InAppSDK.zip) with `.xcframework` of the SDK.
 
-- Download [zip archive](https://sdk.brainlyads.com/ios/repository/1.2.8/InAppSDK.zip) with xcframework within.
-- Unzip it and add to your Xcode project by your preferred way. For example, you can just drag and drop it to project’s structure.
-- **inApp SDK** uses **Google Mobile Ads** as dependency and not work without it. You need to [download and integrate Google Mobile Ads](https://developers.google.com/admob/ios/download) as their official docs described.
-- Check *Frameworks, Libraries, and Embedded Content* in *General* tab of Xcode project. Change *InAppSDK.framework*’s **Embed** to **Do Not Embed** as at screen below:
+2. Unzip the file to your Xcode project's directory (i.e., drag and drop it to your project’s directory).
+
+3. Integrate `Google Mobile Ads SDK` as described in [Google's quickstart guide](https://developers.google.com/admob/ios/quick-start). Google Mobile Ads is required for the InApp iOS SDK to work correctly. 
+
+4. Navigate to the **General** tab of your Xcode project and locate the **Frameworks, Libraries, and Embedded Content** section.
+
+5. Ensure that `InAppSDK.xcframework` added in this section and **Embed** is set to **Embed & Sign**.
 
 ![Untitled](images/frameworks.png)
 
-- That’s it, now with **Google Mobile Ads** and **inApp SDK** dependencies you ready to go.
+# Configure your Xcode Project
 
-## Others
+Configure the following settings in your Xcode project:
 
-We planned to add [Swift Package Manager](https://developer.apple.com/documentation/swift_packages) support in next releases.
+### Add -ObjC linker flag
 
-# Setup
+1. Open your project's settings and navigate to your project's main target.
 
-Very important to do next steps before using inApp SDK:
+2. Navigate to the **Build Setting** tab and locate the **Other Linker Flags** section.
 
-### 1. Add -ObjC linker flag
-
-Your main app’s target must have `-ObjC` linker flag. Add it in *Other Linker Flags* string in *Build Setting* tab as at screen below:
+3. Add the `-ObjC` linker flag:
 
 ![Untitled](images/objc_flag.png)
 
-### 2. Update info.plist of app
+### Update info.plist of app
 
-Add next values to your info.plist related to app. If you’re new at Xcode’s *info.plist* read more at [Apple Developer docs](https://developer.apple.com/documentation/bundleresources/information_property_list).
+Add the following to your project's `info.plist` file.
 
-- First, you need to provide your InApp API key to project’s *info.plist* (your unique inApp API Key would be provided to you by the Next Millennium manager):
+**Note**: If you’re unfamiliar with Xcode’s `info.plist` file, learn more at [Apple Developer docs](https://developer.apple.com/documentation/bundleresources/information_property_list).
+
+- Your unique InApp API, provided by your Next Millennium Media contact:
 
 ```xml
 <key>InAppSDKAPIKey</key>
-<string>API Key</string>
+<string>Put your API Key here</string>
 ```
 
-- Also add Google App ID (your unique Google App ID would be provided to you by the Next Millennium manager):
+- Your unique Google App ID, provided by your Next Millennium Media contact:
 
 ```xml
 <key>GADApplicationIdentifier</key>
 <string>Google App ID</string>
 ```
 
-- Add next `SKAdNetworkItems` key with `SKAdNetworkIdentifier` values:
+- Add a `SKAdNetworkItems` key with the following collection of `SKAdNetworkIdentifier` key/value pairs:
+
 
 ```xml
 <key>SKAdNetworkItems</key>
@@ -206,3 +248,5 @@ Add next values to your info.plist related to app. If you’re new at Xcode’s 
 		</dict>
 	</array>
 ```
+
+- Build app and ensure the project runs without errors.

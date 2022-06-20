@@ -1,62 +1,89 @@
 # Integrate Ad Formats Manually
 
-Manual mode is a way of serving ads in your apps where publisher manually adjusts ad placing and does all of the ad management on his own. This way of integration allows more customization compared to Dynamic method, however Manual mode is recommended for advanced users.
+**Manual mode** is a way of serving ads in your apps where the publisher manually adjusts ad placements and does all of the ad management on their own. 
 
-First, you need to get configurated InApp ad unit from your manager. Use it’s ID to next ads.
+Since **Manual mode** allows for more customization compared to Dynamic method, it's recommended for advanced users.
+
+**Note**: Before continuing, ensure you have configured an InApp ad unit ID from your Next Millennium contact.
+
+**Note:** always work with InApp ads in main thread.
+
+The doc show how to display ads in **Manual mode**.
 
 ## Banner Ad
 
-Use `InAppBannerAdView` class to showing banner ad manually:
+Banner ads are displayed using the `InAppBannerAdView`.
 
-1. Init and add view as subview.
+Follow the steps below to manually display a banner ad:
+
+1. Instantiate `InAppBannerAdView` passing your inApp ad unit ID and a UIViewController to render the ads:
 
 ```swift
-// example of banner class initialization
-lazy var bannerAdView: InAppBannerAdView = {
-    let bannerAdView = InAppBannerAdView(frame: .zero,
-                                        adUnit: *yourAdUnitID*,
-                                        rootViewController: rootViewConntroller)
-    bannerAdView.translatesAutoresizingMaskIntoConstraints = false
-    return bannerAdView
-}()
-
-override func loadView() {
-    view = UIView()
-    ...
-    view.addSubview(bannerAdView)
-
-    // example of constraints for banner ad
-    let bannerAdConstraints = [
-        bannerAdView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),     
-        bannerAdView.heightAnchor.constraint(equalToConstant: 50),
-        bannerAdView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-        bannerAdView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-    ]
-
-    NSLayoutConstraint.activate(bannerAdConstraints)
+class ViewController: UIViewController {
+    // example of banner class initialization
+    lazy var bannerAdView: InAppBannerAdView = {
+        let bannerAdView = InAppBannerAdView(frame: .zero,
+                                            adUnit: *yourAdUnitID*,
+                                            rootViewController: self)
+        bannerAdView.translatesAutoresizingMaskIntoConstraints = false
+        return bannerAdView
+    }()
 }
 ```
 
-2. When main view is loaded and you ready to show ad call loading method:
+2. Add the banner as a subview and initialize it: 
 
 ```swift
-bannerAdView.loadAd()
+class ViewController: UIViewController {
+
+    ...
+
+    override func loadView() {
+        view = UIView()
+        ...
+        view.addSubview(bannerAdView)
+
+        // example of constraints for banner ad
+        let bannerAdConstraints = [
+            bannerAdView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),     
+            bannerAdView.heightAnchor.constraint(equalToConstant: 50),
+            bannerAdView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bannerAdView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ]
+
+        NSLayoutConstraint.activate(bannerAdConstraints)
+    }
+}
 ```
 
-3. You can also add delegate listener and catch events from Banner Ad view:
+3. Call `loadAd()` when the main view is loaded:
 
 ```swift
-bannerAdView.delegate = *your instance which impelements delegate's protocol*
+class ViewController: UIViewController {
+   
+   ...
+
+   override func viewDidLoad() {
+    super.viewDidLoad()
+
+    bannerAdView.loadAd()
+   }
+}
+```
+4. *(Optional)* Add a delegate listener to handle events from the banner ad view:
+
+```swift
+bannerAdView.delegate = *your instance which implements delegate's protocol*
 ```
 
-Full example of usage:
+The following example shows how to assign the `InAppBannerAdView` as a delegate and extend the class to implement the delegate methods and also full example of usage:
 
 ```swift
 class MainViewController: UIViewController {
     lazy var bannerAdView: InAppBannerAdView = {
         let bannerAdView = InAppBannerAdView(frame: .zero,
                                         adUnit: *yourAdUnitID*,
-                                        rootViewController: rootViewConntroller)
+                                        rootViewController: self)
     // set delegate
     bannerAdView.delegate = self
 
@@ -113,9 +140,21 @@ extension MainViewController: InAppBannerAdViewDelegate {
 
 ## Interstitial Ad
 
-Use `InAppInterstitialAdView` class to showing banner ad manually:
+Interstitial ads are displayed using the `InAppInterstitialAdView` class.
 
-1. Init class with InApp ad unit and UIViewController which will show ads:
+Follow the steps below to manually display an Interstitial ad:
+
+1. Declare an optional `InAppInterstitialAdView` var in your `UIViewController` class:
+
+```swift
+class ViewController: UIViewController {
+
+    ...
+    var interstitialAdView: InAppInterstitialAdView?
+}
+```
+
+2. Instantiate `InAppInterstitialAdView` when your view loads passing in your InApp ad unit ID and a `UIViewController` to render the ads:
 
 ```swift
 class MainViewController: UIViewController {
@@ -126,25 +165,25 @@ class MainViewController: UIViewController {
 
         interstitialAdView = InAppInterstitialAdView(
             adUnit: *yourAdUnitID*,
-            rootViewController: *your UIViewController instance*
+            rootViewController: self
             )
     }
 }
 ```
 
-2. When your UIViewController is loaded and you ready to show ad call func to load and show ad:
+3. Unwrap interstitialAdView and invoke `loadAndShowAd()` to load and render the ad when your `UIViewController` is loaded:
 
 ```swift
-interstitialAdView.loadAndShowAd()
+interstitialAdView?.loadAndShowAd()
 ```
 
-3. You can also add delegate listener and catch events from Interstitial Ad:
+4. *(Optional)* Add a delegate listener to handle events from an Interstitial ad, just prior to the call to `loadAndShowAd()`:
 
 ```swift
-interstitialAdView.delegate = *your instance which impelements delegate's protocol*
+interstitialAdView?.delegate = *your instance which impelements delegate's protocol*
 ```
 
-Full example of usage:
+The following example shows how to set up the `InAppInterstitialAdView` and the delegate methods and also full example of usage:
 
 ```swift
 class MainViewController: UIViewController {
@@ -155,7 +194,7 @@ class MainViewController: UIViewController {
 
         interstitialAdView = InAppInterstitialAdView(
             adUnit: *yourAdUnitID*,
-            rootViewController: *your UIViewController instance*
+            rootViewController: self
             )
 
         // set delegate
@@ -212,12 +251,25 @@ extension MainViewController: InAppInterstitialAdViewDelegate {
 
 ## Rewarded Ad
 
-Use `InAppRewardedAdView` class to showing banner ad manually:
+Rewarded ads are displayed using the `InAppRewardedAdView` class.
 
-1. Init class with InApp ad unit and UIViewController which will show ads:
+Follow the steps below to manually display a rewarded ad:
+
+1. Declare an optional `InAppRewardedAdView` var in your `UIViewController` class:
 
 ```swift
-class MainViewController: UIViewController {
+class ViewController: UIViewController {
+
+    ...
+
+    var rewardedAdView: InAppRewardedAdView?
+}
+```
+
+2. Instantiate the `InAppRewardedAdView` when your view loads, passing in your InApp ad unit ID and the `UIViewController` to render the ads:
+
+```swift
+class ViewController: UIViewController {
     var rewardedAdView: InAppRewardedAdView?
 
     override func viewDidLoad() {
@@ -225,16 +277,16 @@ class MainViewController: UIViewController {
 
         rewardedAdView = InAppRewardedAdView(
             adUnit: *yourAdUnitID*,
-            rootViewController: *your UIViewController instance*
+            rootViewController: self
             )
     }
 }
 ```
 
-2.When your UIViewController is loaded and you ready to show ad call func to load and show ad:
+3. Unwrap `rewardedView` and invoke `loadAndShowAd()` to load and render an ad:
 
 ```swift
-rewardedAdView.loadAndShowAd()
+rewardedAdView?.loadAndShowAd()
 ```
 
 Full example of usage:
@@ -248,7 +300,7 @@ class MainViewController: UIViewController {
 
         rewardedAdView = InAppRewardedAdView(
             adUnit: *yourAdUnitID*,
-            rootViewController: *your UIViewController instance*
+            rootViewController: self
             )
 
         rewardedAdView?.loadAndShowAd()
@@ -260,9 +312,22 @@ class MainViewController: UIViewController {
 
 ## Rewarded Interstitial Ad
 
-Use `InAppRewardedInterstitialAdView` class to showing ad manually:
+Rewarded interstitial ads are displayed using the `InAppRewardedInterstitialAdView` class.
 
-1. Init class with InApp ad unit and UIViewController which will show ads:
+Follow the steps below to manually display a rewarded interstitial ad:
+
+1. Declare an optional `InAppRewardedInterstitialAdView` instance in your `UIViewController` class:
+
+```swift
+class ViewController: UIViewController {
+
+    ...
+    var rewardedInterstitialAdView: InAppRewardedInterstitialAdView?
+
+}
+```
+
+2. Instantiate the `InAppRewardedInterstitialAdView` when your view loads, passing in your InApp ad unit ID and the `UIViewController` to render the ads:
 
 ```swift
 class MainViewController: UIViewController {
@@ -273,16 +338,16 @@ class MainViewController: UIViewController {
 
         rewardedInterstitialAdView = InAppRewardedInterstitialAdView(
             adUnit: *yourAdUnitID*,
-            rootViewController: *your UIViewController instance*
+            rootViewController: self
             )
     }
 }
 ```
 
-2.When your UIViewController is loaded and you ready to show ad call func to load and show ad:
+3. Invoke `loadAndShowAd()` to load and show ads when your UIViewController is loaded:
 
 ```swift
-rewardedInterstitialAdView.loadAndShowAd()
+rewardedInterstitialAdView?.loadAndShowAd()
 ```
 
 Full example of usage:
@@ -296,7 +361,7 @@ class MainViewController: UIViewController {
 
         rewardedInterstitialAdView = InAppRewardedInterstitialAdView(
             adUnit: *yourAdUnitID*,
-            rootViewController: *your UIViewController instance*
+            rootViewController: self
             )
 
         rewardedInterstitialAdView?.loadAndShowAd()

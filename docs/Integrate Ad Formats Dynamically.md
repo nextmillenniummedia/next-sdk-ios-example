@@ -1,16 +1,18 @@
 # Integrate Ad Formats Dynamically
 
-Dynamic mode allows publishers to display ads directly into the content of their App’s screens using pre-defined ad units at the inApp dashboard UI. This method saves publishers time setting up and lowers maintenance to the minimum, since you there’s no need to update code in case of ad format switch while serving ads dynamically.
+In **Dynamic mode**, our SDK dynamically services and displays ads directly in the content of your app’s screens, using pre-defined ad units selected from the inApp management dashboard. This means you don’t need to update code when the ad format changes, which reduces set up time and minimizes maintenance.
 
-# Add Screens
+The following subsections describe how to integrate ad formats dynamically:
 
-First, you need provide us a list of unique screens in your apps. In iOS SDK we use UIViewController class to do it. You can add screens by 3 ways:
+## Register Screen Names
 
-## 1. Upload Screen Names
+To display ads dynamically, you must first register the names of your screens with us.
 
-Before start to using dynamic ad injection you need to register screens of your app on InApp dashboard. You can make this manually on dasboard or using *registerScreen* method:
+There are two methods you can choose from to register your screens:
 
-1. Add to your AppDelegate’s after launching method next code:
+### 1. Upload Screen Names
+
+Register the screens using the `registerScreens()` method. The following example shows how to invoke this API in your `AppDelegate` after launch:
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -24,14 +26,18 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-> We recommend to use class name of your UIViewController as key so they’ll be unique.
-> 
+**Notes:**
 
-## 2. Upload Screen Names and screenshots
+- Each key must be unique. You can include the name of your UIViewController class to help identify where the key was registered. 
 
-Also you can provide us screenshot of your screens and edit ad placements by them from InApp dashboard.
+- This code is no longer needed after you've registered your screens. Ensure that the code is not invoked in a production build.
 
-1. Add to appeared UIViewController next code. We strongly recommended to use Timer with delay so we catch the best view’s screenshot:
+
+### 2. Upload Screen Names and Screenshots
+
+You can provide us with screenshots of your app's screens using the uploadScreenshot() method, and edit the ad placements via the InApp dashboard.
+
+The example below shows how to invoke the API in the viewDidAppear() method of your UIViewController. We strongly recommended using a Timer with a delay to capture the best screenshot:
 
 ```swift
 override func viewDidAppear(_ animated: Bool) {
@@ -48,30 +54,17 @@ override func viewDidAppear(_ animated: Bool) {
 }
 ```
 
-> Note: After you registered screens all this code won’t be needed. Make sure that you don’t have it in production build.
-> 
+**Note:** This code is no longer needed after you've registered your screens. Ensure that the code is not invoked in a production build.
 
-## 3. Add Screen Names manually in dashboard
+## Show an Ad
 
-- Go to InApp dasboard.
-- In Activities tab of your application you can add new activity with name..
-- Use generated key of new activity for your screen.
+Now that your screens are registered, your app is ready for Dynamic mode. 
 
-# Showing Ad
+### Banner Ads
 
-With registered screens your app is ready for Dynamic mode. Note, that main configuration and settings available at InApp dashboard. In your app’s sources you need to implement support of **Dynamic mode** by steps below.
+Follow the steps below to display an ad configurated for Dynamic mode:
 
-## Banner Ads
-
-Currently there are 3 types of banner ad supported in the **Dynamic mode**: 
-
-- **Sticky Top** (*at top of screen or with offset*)
-- **Sticky Bottom** (*at bottom of screen or with inset*)
-- **In Content** *(by view container and with any content inside)*
-
-To showing banner ad you need to call the SDK injection at *viewDidLoad()*:
-
-1. Call *inject()* in your UIViewController’s *viewDidLoad* that registered for ad injection:
+1. Invoke the `inject()` method in your `viewDidLoad()` method of your `UIViewController` to show an ad, passing in the name of a screen that was registered, in this example:
 
 ```swift
 public override func viewDidLoad() {
@@ -81,7 +74,9 @@ public override func viewDidLoad() {
 }
 ```
 
-It’s all you need to setup banner and ad appearing. You can find all other settings at InApp dashboard.
+2. Contact your Next Millennium manager to specify the type of add to associate with the screen (e.g., banner, interstitial, etc.). We will then manually enable the type on our end and notify you when the ad has been enabled.
+
+After completing these steps an ad should appear in your app. See `Test Your Implementation` doc to learn about InApp ad testing features.
 
 ### In Content View with Banner ads
 
@@ -137,14 +132,4 @@ public override func viewDidLoad() {
     ...
     InApp.shared.inject(vc: self, screenName: "Example")
 }
-```
-
-## Interstitial and Rewarded Ads
-
-To use Interstitial and Rewarded ad you need to call inject method at root UIViewController at time when you want to show ad. Make sure that you added and configured ad unit with that types of ad at InApp dashboard.
-
-1. Call *inject()* in your UIViewController’s *viewDidLoad* that registered for ad injection:
-
-```swift
-InApp.shared.inject(vc: self, screenName: "Example")
 ```

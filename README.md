@@ -1,4 +1,6 @@
-# InApp SDK
+# InApp SDK for iOS Documentation and Example
+
+NMM (Next Millennium Media) InApp iOS SDK enables you to monetize your applications through high-quality ads via an easy-to-install, zero-maintenance, native iOS framework.
 
 This repo contains docs about InApp SDK and public example of usage. [Contact us](https://nextmillennium.io/) to learn more about product.
 Also you can always put your issues with SDK here and we'll do our best to help you.
@@ -11,19 +13,23 @@ This documentation describes the procedure on how to integrate Next Millennium M
 
 # Prerequisites
 
-✅ **iOS 11+**
+NMM InApp iOS SDK requires the following:
+
+✅ **iOS 11+** (required for testing and development)
 
 ✅ **Xcode 13+**
 
-✅ **SDK is officially support UIKit based apps only for now.**
+✅ **UIKit based app**
 
-✅ **SDK is developed on Swift and can be called only from Swift files.**
+✅ **Swift**
 
-Check the docs below to learn about all the features we provide.
+✅ **CocoaPods**
 
- **1.** [Integrate SDK](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/Integrate%20SDK.md)
+Documents below describes how to integrate NMM InApp ads into your iOS applications.
 
- **2.** [Initialize SDK](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/Initialize%20SDK.md)
+ **1.** [Integrate the SDK](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/Integrate%20SDK.md)
+
+ **2.** [Initialize the SDK](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/Initialize%20SDK.md)
 
  **3.** [Integrate Ad Formats Dynamically](https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/Integrate%20Ad%20Formats%20Dynamically.md)
 
