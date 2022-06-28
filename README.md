@@ -5,7 +5,7 @@ NMM (Next Millennium Media) InApp iOS SDK enables you to monetize your applicati
 This repo contains docs about InApp SDK and public example of usage. [Contact us](https://nextmillennium.io/) to learn more about product.
 Also you can always put your issues with SDK here and we'll do our best to help you.
 
-***Current SDK version**:* 1.2.8
+***Current SDK version**:* 1.2.9
 
 NMM’s (Next Millennium Media) **inApp** allows you to monetize your mobile applications through high-quality ads via an easy to install, zero-maintenance native SDK.
 
