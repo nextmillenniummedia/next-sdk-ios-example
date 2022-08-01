@@ -2,6 +2,18 @@
 
 Make sure that you've complete the previous steps on SDK integration prior to testing.
 
+Every device which you use for testing must allow access to IDFA so we can generate test device ID based on it. We will not save or use IDFA for any other purposes in this case.
+
+You can give access to IDFA by calling `requestTrackingAuthorizationWithCompletionHandler:` function in your app.
+
+Learn more about IDFA and how to obtain it from [Apple documentation](https://developer.apple.com/documentation/apptrackingtransparency).
+
+On the screen below you can see an example of action menu which asks about IDFA access.
+
+<p align="center">
+<img src="https://github.com/nextmillenniummedia/inapp-ios-example/blob/main/docs/images/allow_idfa.jpg" height="480">
+</p>
+
 ## Step 1: Debug Mode
 
 Test ads with iOS Simulator at this stage.
@@ -19,8 +31,6 @@ Enabling a flag is required, since if we don't get a signal we won't be able to 
 ```swift
 InApp.shared.start(onTestMode: true)
 ```
-
-**Important:** For iOS 14+ you need also give access to IDFA so we can generate device ID based on it. Learn about IDFA and how to obtain in from [Apple documentation](https://developer.apple.com/documentation/apptrackingtransparency).
 
 ## Step 2: TestFlight
 
