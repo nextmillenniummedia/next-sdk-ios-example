@@ -1,11 +1,11 @@
 platform :ios, '15.0'
 
-target 'InAppExample' do
+target 'Example' do
   use_frameworks!
 
   # ignore all warnings from all pods
   inhibit_all_warnings!
 
-  pod 'InAppSDK'
+  pod 'NextSDK'
 
 end

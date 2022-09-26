@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import InAppSDK
+import NextSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,18 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Initialize SDK. Always do it once before application start.
-        InApp.shared.start()
+        Next.shared.configure(
+            byAPIKey:"6285d909-0033-4ebc-9926-91e14c8e2a2f",
+            onTestMode: true
+        )
         
         // Enabling additional logging for debug.
-        InApp.shared.isDebugLoggingEnabled = true
-        
-        // We registered our views to work with them in dashboard after.
-//        InApp.shared.registerScreens(screens: [
-//            InAppScreen(key: InAppConfiguration.Views.banner, title: InAppConfiguration.Views.banner),
-//            InAppScreen(key: InAppConfiguration.Views.interstitial, title: InAppConfiguration.Views.interstitial),
-//            InAppScreen(key: InAppConfiguration.Views.rewarded, title: InAppConfiguration.Views.rewarded),
-//            InAppScreen(key: InAppConfiguration.Views.native, title: InAppConfiguration.Views.native),
-//        ])
+        Next.shared.logLevel = .debug
         
         // Initialize view tree hierarchy.
         let adsListViewController = AdsListViewController()

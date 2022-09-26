@@ -12,7 +12,6 @@ final class AdsListViewController: UIViewController {
         case banner = "Banner Ad Example"
         case interstitial = "Interstitial Ad Example"
         case rewarded = "Rewarded Ad Example"
-        case native = "Native Ad Example"
     }
     
     private let adFormatsList: [AdFormat] = {
@@ -93,9 +92,6 @@ extension AdsListViewController: UITableViewDelegate {
         case AdFormat.rewarded.rawValue:
             let rewardedViewController = RewardedViewController()
             navigationController?.pushViewController(rewardedViewController, animated: true)
-        case AdFormat.native.rawValue:
-            let nativeViewController = NativeViewController()
-            navigationController?.pushViewController(nativeViewController, animated: true)
         default: return
         }
     }
