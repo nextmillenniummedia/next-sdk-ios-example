@@ -5,7 +5,7 @@
 //  Copyright © 2022 Next Millennium Media. All rights reserved.
 //
 
-import InAppSDK
+import NextSDK
 import UIKit
 
 final class InterstitialViewController: UIViewController {
@@ -19,7 +19,7 @@ final class InterstitialViewController: UIViewController {
     }(UILabel())
     
     // manual intergration
-    var interstitialAdView: InAppInterstitialAdView?
+    var interstitialAdView: InterstitialAdView?
     
     private lazy var activeConstraints: [NSLayoutConstraint] = []
     
@@ -33,14 +33,11 @@ final class InterstitialViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = Constants.title
-
-        // Calling ads auto injection in registered view
-        InApp.shared.inject(vc: self, screenName: InAppConfiguration.Views.interstitial)
         
         // example of manual integration of Interstitial ads
-//        interstitialAdView = InAppInterstitialAdView(adUnit: "523", rootViewController: self)
-//        interstitialAdView?.delegate = self
-//        interstitialAdView?.loadAndShowAd()
+        interstitialAdView = InterstitialAdView(adUnitID: "70", rootViewController: self)
+        interstitialAdView?.delegate = self
+        interstitialAdView?.loadAndShowAd()
     }
     
     private func setupUI() {
@@ -59,36 +56,36 @@ final class InterstitialViewController: UIViewController {
 }
 
 // example of usage interstitial ads delegate
-extension InterstitialViewController: InAppInterstitialAdViewDelegate {
-    func interstitialAdViewDidLoadedAd(_ interstitialAdView: InAppInterstitialAdView) {
+extension InterstitialViewController: InterstitialAdViewDelegate {
+    func interstitialAdViewDidLoadedAd(_ interstitialAdView: InterstitialAdView) {
         print("interstitialAdViewDidLoadedAd")
     }
     
-    func interstitialAdView(_ interstitialAdView: InAppInterstitialAdView, didFailLoadAdWithError error: Error) {
+    func interstitialAdView(_ interstitialAdView: InterstitialAdView, didFailLoadAdWithError error: Error) {
         print("interstitialAdViewDidFailLoadAd")
     }
     
-    func interstitialAdWillPresent(_ interstitialAdView: InAppInterstitialAdView) {
+    func interstitialAdWillPresent(_ interstitialAdView: InterstitialAdView) {
         print("interstitialAdWillPresent")
     }
     
-    func interstitialAdDidFailToPresent(_ interstitialAdView: InAppInterstitialAdView, error: Error) {
+    func interstitialAdDidFailToPresent(_ interstitialAdView: InterstitialAdView, error: Error) {
         print("interstitialAdDidFailToPresent")
     }
     
-    func interstitialAdDidRecordImpression(_ interstitialAdView: InAppInterstitialAdView) {
+    func interstitialAdDidRecordImpression(_ interstitialAdView: InterstitialAdView) {
         print("interstitialAdDidRecordImpression")
     }
     
-    func interstitialAdDidRecordClick(_ interstitialAdView: InAppInterstitialAdView) {
+    func interstitialAdDidRecordClick(_ interstitialAdView: InterstitialAdView) {
         print("interstitialAdDidRecordClick")
     }
     
-    func interstitialAdViewWillDismiss(_ interstitialAdView: InAppInterstitialAdView) {
+    func interstitialAdViewWillDismiss(_ interstitialAdView: InterstitialAdView) {
         print("interstitialAdViewWillDismiss")
     }
     
-    func interstitialAdViewDidDismiss(_ interstitialAdView: InAppInterstitialAdView) {
+    func interstitialAdViewDidDismiss(_ interstitialAdView: InterstitialAdView) {
         print("interstitialAdViewDidDismiss")
     }
 }

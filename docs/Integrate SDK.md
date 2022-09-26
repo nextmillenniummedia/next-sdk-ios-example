@@ -1,10 +1,10 @@
 # Integrate the SDK
 
-This document describe how to integrate the InApp iOS SDK into your iOS project.
+This document describe how to integrate the Next SDK into your iOS project.
 
 ## 1. Integrate with CocoaPods (preffered)
 
-The simplest way to use InApp SDK is to integrate with [CocoaPods](https://guides.cocoapods.org/using/getting-started).
+The simplest way to use Next SDK is to integrate with [CocoaPods](https://guides.cocoapods.org/using/getting-started).
 
 If you're new to CocoaPods, see their [official documentation](https://guides.cocoapods.org/using/using-cocoapods) for information on how to create and use Pod files.
 
@@ -24,14 +24,14 @@ Follow the steps below to integrate with CocoaPods:
 
 	d) Verify that a file named `Podfile` was created in the current location.
 
-2. Add your `InAppSDK` pod in your `Podfile`:
+2. Add your `NextSDK` pod in your `Podfile`:
 
 ```
 target 'ExampleProject' do
   use_frameworks!
 
   # Pods for ExampleProject
-  pod 'InAppSDK'
+  pod 'NextSDK'
 
   ...
 end
@@ -49,7 +49,7 @@ This will create a `Pods` subdirectory containing the dependencies in the same l
 Add our pod in your Podfile:
 
 ```swift
-pod 'InAppSDK'
+pod 'NextSDK'
 ```
 
 Then, from the command line run:
@@ -62,15 +62,15 @@ pod install --repo-update
 
 Alternatively, you can manually import the SDK with the following steps:
 
-1. Download [zip archive](https://sdk.brainlyads.com/ios/repository/1.2.9/InAppSDK.zip) with `.xcframework` of the SDK.
+1. Download [zip archive](https://sdk.brainlyads.com/ios/repository/2.0.1/NextSDK.zip) with `.xcframework` of the SDK.
 
 2. Unzip the file to your Xcode project's directory (i.e., drag and drop it to your project’s directory).
 
-3. Integrate `Google Mobile Ads SDK` as described in [Google's quickstart guide](https://developers.google.com/admob/ios/quick-start). Google Mobile Ads is required for the InApp iOS SDK to work correctly. 
+3. Integrate `Google Mobile Ads SDK` as described in [Google's quickstart guide](https://developers.google.com/admob/ios/quick-start). Google Mobile Ads is required for the Next SDK to work correctly.
 
 4. Navigate to the **General** tab of your Xcode project and locate the **Frameworks, Libraries, and Embedded Content** section.
 
-5. Ensure that `InAppSDK.xcframework` added in this section and **Embed** is set to **Embed & Sign**.
+5. Ensure that `NextSDK.xcframework` added in this section and **Embed** is set to **Embed & Sign**.
 
 ![Untitled](images/frameworks.png)
 

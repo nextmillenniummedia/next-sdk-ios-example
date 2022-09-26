@@ -5,7 +5,7 @@
 //  Copyright © 2022 Next Millennium Media. All rights reserved.
 //
 
-import InAppSDK
+import NextSDK
 import UIKit
 
 final class BannerViewController: UIViewController {
@@ -19,9 +19,9 @@ final class BannerViewController: UIViewController {
     }(UILabel())
     
     // manual integration of banner ads
-    lazy var bannerAdView: InAppBannerAdView = {
-        let bannerAdView = InAppBannerAdView(frame: .zero,
-                                             adUnit: "522", rootViewController: self)
+    lazy var bannerAdView: BannerAdView = {
+        let bannerAdView = BannerAdView(frame: .zero,
+                                        adUnitID: "75", rootViewController: self)
         bannerAdView.translatesAutoresizingMaskIntoConstraints = false
         return bannerAdView
     }()
@@ -38,13 +38,10 @@ final class BannerViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = Constants.title
-
-        // Calling ads auto injection in registered view
-        InApp.shared.inject(vc: self, screenName: InAppConfiguration.Views.banner)
         
         // example of manual integration banner ads
-//        bannerAdView.delegate = self
-//        bannerAdView.loadAd()
+        bannerAdView.delegate = self
+        bannerAdView.loadAd()
     }
     
     private func setupUI() {
@@ -59,46 +56,46 @@ final class BannerViewController: UIViewController {
         ]
         
         // example of manual integration banner ads
-//        view.addSubview(bannerAdView)
-//
-//        activeConstraints.append(contentsOf: [
-//            bannerAdView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-//            bannerAdView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            bannerAdView.widthAnchor.constraint(equalToConstant: 320),
-//            bannerAdView.heightAnchor.constraint(equalToConstant: 50),
-//        ])
+        view.addSubview(bannerAdView)
+
+        activeConstraints.append(contentsOf: [
+            bannerAdView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            bannerAdView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bannerAdView.widthAnchor.constraint(equalToConstant: 320),
+            bannerAdView.heightAnchor.constraint(equalToConstant: 50),
+        ])
         
         NSLayoutConstraint.activate(activeConstraints)
     }
 }
 
 // example of usage banner ads delegate
-extension BannerViewController: InAppBannerAdViewDelegate {
-    func bannerAdViewDidLoadAd(_ bannerAdView: InAppBannerAdView) {
+extension BannerViewController: BannerAdViewDelegate {
+    func bannerAdViewDidLoadAd(_ bannerAdView: BannerAdView) {
         print("bannerAdViewDidLoadAd")
     }
     
-    func bannerAdView(_ bannerAdView: InAppBannerAdView, didFailLoadAdWithError error: Error) {
-        print("bannerAdView")
+    func bannerAdView(_ bannerAdView: BannerAdView, didFailLoadAdWithError error: Error) {
+        print("bannerAdViewDidFailed")
     }
     
-    func bannerAdViewDidRecordImpression(_ bannerAdView: InAppBannerAdView) {
+    func bannerAdViewDidRecordImpression(_ bannerAdView: BannerAdView) {
         print("bannerAdViewDidRecordImpression")
     }
     
-    func bannerAdViewDidRecordClick(_ bannerAdView: InAppBannerAdView) {
+    func bannerAdViewDidRecordClick(_ bannerAdView: BannerAdView) {
         print("bannerAdViewDidRecordClick")
     }
     
-    func bannerAdViewWillPresentAd(_ bannerAdView: InAppBannerAdView) {
+    func bannerAdViewWillPresentAd(_ bannerAdView: BannerAdView) {
         print("bannerAdViewWillPresentAd")
     }
     
-    func bannerAdViewWillDismissAd(_ bannerAdView: InAppBannerAdView) {
+    func bannerAdViewWillDismissAd(_ bannerAdView: BannerAdView) {
         print("bannerAdViewWillDismissAd")
     }
     
-    func bannerAdViewDidDismissAd(_ bannerAdView: InAppBannerAdView) {
+    func bannerAdViewDidDismissAd(_ bannerAdView: BannerAdView) {
         print("bannerAdViewDidDismissAd")
     }
 }

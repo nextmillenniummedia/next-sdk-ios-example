@@ -5,35 +5,36 @@
 - To import SDK at Swift file use name of framework:
 
 ```swift
-import InAppSDK
+import NextSDK
 ```
 
-- Main class of the SDK called `InApp`. Always use it's shared instance:
+- Main class of the SDK called `Next`. Always use it's shared instance:
 
 ```swift
-InApp.shared
+Next.shared
 ```
 
 ## Initialization
 
-Follow the steps below to import and initialize the InApp iOS SDK:
+Follow the steps below to import and initialize the Next SDK:
 
-1. Ensure your project has a `UIApplicationDelegate` class defined.
-2. Add the following import to your `UIApplicationDelegate` class's file:
+- Ensure your project has a `UIApplicationDelegate` class defined.
+
+- Add the following import to your `UIApplicationDelegate` class's file:
 
 ```swift
-import InAppSDK
+import NextSDK
 ```
 
-3. Invoke `InApp.shared.start()` in the `UIApplication`'s `didFinishLaunchingWithOptions` delegate method:
+- Invoke `Next.shared.configure(byAPIKey:)` in the `UIApplication`'s `didFinishLaunchingWithOptions` delegate method:
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        InApp.shared.start()
+        Next.shared.configure(byAPIKey: "api_key")
         return true
 }
 ```
 
-**Note**: Ensure that `start()` is only invoked once.
+**Note**: Ensure that `configure()` is only invoked once.
 
 The SDK is now ready to use. The next documents show how to integrate ads with the SDK.
