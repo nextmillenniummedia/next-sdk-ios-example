@@ -62,7 +62,7 @@ pod install --repo-update
 
 Alternatively, you can manually import the SDK with the following steps:
 
-1. Download [zip archive](https://sdk.brainlyads.com/ios/repository/2.0.1/NextSDK.zip) with `.xcframework` of the SDK.
+1. Download [zip archive](https://sdk.brainlyads.com/ios/repository/2.1.0/NextSDK.zip) with `.xcframework` of the SDK.
 
 2. Unzip the file to your Xcode project's directory (i.e., drag and drop it to your project’s directory).
 
