@@ -31,9 +31,11 @@ Documents below describes how to integrate NMM InApp ads into your iOS applicati
 
  **4.** [Test Your Integration](https://github.com/nextmillenniummedia/next-sdk-ios-example/blob/main/docs/Test%20Your%20Intergration.md)
 
- **5.** [Advanced Settings](https://github.com/nextmillenniummedia/next-sdk-ios-example/blob/main/docs/Advanced%20Settings.md)
+ **5.** [Dynamic Ads](https://github.com/nextmillenniummedia/next-sdk-ios-example/blob/main/docs/Dynamic%20Ads.md)
 
- **6.** [FAQ](https://github.com/nextmillenniummedia/next-sdk-ios-example/blob/main/docs/FAQ.md)
+ **6.** [Advanced Settings](https://github.com/nextmillenniummedia/next-sdk-ios-example/blob/main/docs/Advanced%20Settings.md)
+
+ **7.** [FAQ](https://github.com/nextmillenniummedia/next-sdk-ios-example/blob/main/docs/FAQ.md)
 
 ## Example
 
